@@ -1,0 +1,8 @@
+https://www.javacodegeeks.com/2017/11/spring-boot-web-application-gradle.html
+https://www.baeldung.com/spring-boot-gradle-plugin
+http://qaru.site/questions/839848/initialising-a-database-before-spring-boot-test
+https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html#boot-features-testing-spring-boot-applications
+https://doc.cuba-platform.com/manual-6.9-ru/db_update_gradle.html
+https://guides.gradle.org/building-spring-boot-2-projects-with-gradle/
+https://spring.io/guides/gs/spring-boot/
+https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/
