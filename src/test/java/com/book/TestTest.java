@@ -1,4 +1,4 @@
-package com.QROKtest;
+package com.book;
 
 public class TestTest {
 }
