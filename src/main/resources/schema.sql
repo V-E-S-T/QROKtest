@@ -44,18 +44,29 @@ create table books(
                    id int(10) not null auto_increment,
                    title varchar(100),
                    isbn varchar(255),
-                   sex varchar(100),
+                  genre varchar(100),
   primary key (id))
   default character set = utf8;
 
 
-drop table if exists author;
-create table author(
+drop table if exists authors;
+create table authors(
 
   id int(10) not null auto_increment,
-  title varchar(100),
-  isbn varchar(255),
+  firstName varchar(100),
+  lastName varchar(255),
   sex varchar(100),
+  birthDate DATE,
   primary key (id))
   default character set = utf8;
+
+drop table if exists rewards;
+create table rewards(
+
+  id int(10) not null auto_increment,
+  year INT(20),
+  title varchar(255),
+  primary key (id))
+  default character set = utf8;
+
 
