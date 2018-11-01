@@ -1,6 +1,8 @@
-# DROP TABLE IF EXISTS user_roles;
-# DROP TABLE IF EXISTS meals;
-# DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS authors_books;
+DROP TABLE IF EXISTS authors;
+DROP TABLE IF EXISTS rewards;
+DROP TABLE IF EXISTS books;
+
 # DROP SEQUENCE IF EXISTS global_seq;
 #
 # CREATE SEQUENCE global_seq START 100000;
@@ -36,37 +38,42 @@
 # CREATE UNIQUE INDEX meals_unique_user_datetime_idx ON meals (user_id, date_time);
 
 
-create schema if not exists qrok default character set utf8;
-use qrok;
-drop table if exists books;
-create table books(
+CREATE SCHEMA IF NOT EXISTS qrok DEFAULT CHARACTER SET utf8;
+USE qrok;
+CREATE TABLE books(
 
-                   id int(10) not null auto_increment,
+                   id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                    title varchar(100),
                    isbn varchar(255),
-                  genre varchar(100),
-  primary key (id))
-  default character set = utf8;
+                   genre varchar(100))
+  DEFAULT CHARACTER SET = utf8;
 
+CREATE TABLE rewards(
 
-drop table if exists authors;
-create table authors(
-
-  id int(10) not null auto_increment,
-  firstName varchar(100),
-  lastName varchar(255),
-  sex varchar(100),
-  birthDate DATE,
-  primary key (id))
-  default character set = utf8;
-
-drop table if exists rewards;
-create table rewards(
-
-  id int(10) not null auto_increment,
+  id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   year INT(20),
-  title varchar(255),
-  primary key (id))
-  default character set = utf8;
+  title VARCHAR(255))
+  DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE authors(
+
+                    id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                    reward_id INT(10),
+                    firstName VARCHAR(100),
+                    lastName VARCHAR(255),
+                    sex VARCHAR(100),
+                    birthDate DATE,
+                    FOREIGN KEY (reward_id) REFERENCES rewards (id))
+  DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE authors_books(
+
+                    author_id INT(10) NOT NULL,
+                    book_id INT(10) NOT NULL,
+                    FOREIGN KEY (author_id) REFERENCES authors (id),
+                    FOREIGN KEY (book_id) REFERENCES books (id))
+  DEFAULT CHARACTER SET = utf8;
+
+
 
 

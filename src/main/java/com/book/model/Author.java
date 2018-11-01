@@ -36,6 +36,7 @@ public class Author {
     @JoinColumn(name = "reward_id")
     private List<Reward> rewardList;
 
+
     public int getId() {
         return id;
     }
