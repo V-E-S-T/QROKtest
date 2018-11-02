@@ -2,6 +2,7 @@ package com.book.dao;
 
 import com.book.model.Author;
 import com.book.model.Book;
+import com.book.model.Reward;
 import com.book.model.Sex;
 
 import java.util.Date;
@@ -19,9 +20,9 @@ public interface AuthorRepository {
 
     List<Author> getAll();
 
-    List<Book> listAuthorBooks(int author_id);
+    List<Book> listBooks(int author_id);
 
-    List<Book> listAuthorRewards(int author_id);
+    List<Reward> listRewards(int author_id);
 
     boolean isExist(int author_id);
 

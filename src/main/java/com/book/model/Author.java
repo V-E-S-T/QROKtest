@@ -101,4 +101,44 @@ public class Author {
     public void setRewardList(List<Reward> rewardList) {
         this.rewardList = rewardList;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Author)) return false;
+
+        Author author = (Author) o;
+
+        if (getFirstName() != null ? !getFirstName().equals(author.getFirstName()) : author.getFirstName() != null)
+            return false;
+        if (getLastName() != null ? !getLastName().equals(author.getLastName()) : author.getLastName() != null)
+            return false;
+        if (getSex() != author.getSex()) return false;
+        if (getBookList() != null ? !getBookList().equals(author.getBookList()) : author.getBookList() != null)
+            return false;
+        if (getBirthDate() != null ? !getBirthDate().equals(author.getBirthDate()) : author.getBirthDate() != null)
+            return false;
+        return getRewardList() != null ? getRewardList().equals(author.getRewardList()) : author.getRewardList() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getFirstName() != null ? getFirstName().hashCode() : 0;
+        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
+        result = 31 * result + (getSex() != null ? getSex().hashCode() : 0);
+        result = 31 * result + (getBirthDate() != null ? getBirthDate().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", sex=" + sex +
+                ", bookList=" + bookList +
+                ", birthDate=" + birthDate +
+                ", rewardList=" + rewardList +
+                '}';
+    }
 }

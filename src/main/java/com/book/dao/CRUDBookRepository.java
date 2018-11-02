@@ -1,6 +1,7 @@
 package com.book.dao;
 
 import com.book.model.Book;
+import com.book.model.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,9 @@ public interface CRUDBookRepository extends JpaRepository<Book, Integer> {
     @Transactional
     boolean deleteById(int author_id);
 
-    List<Book> findBooksByGenre();
+    List<Book> findBooksByGenre(Genre genre);
 
     List<Book> findAll();
+
+    int countById(int book_id);
 }

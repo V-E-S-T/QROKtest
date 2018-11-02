@@ -17,6 +17,14 @@ public class Reward {
     @Column(name = "title")
     private String title;
 
+    public Reward() {
+    }
+
+    public Reward(int year, String title) {
+        this.year = year;
+        this.title = title;
+    }
+
     public int getId() {
         return id;
     }

@@ -26,6 +26,15 @@ public class Book {
     @ManyToMany(mappedBy = "bookList", fetch = FetchType.LAZY)
     private List<Author> authorList = new ArrayList<>();
 
+    public Book() {
+    }
+
+    public Book(String title, String isbn, Genre genre) {
+        this.title = title;
+        this.isbn = isbn;
+        this.genre = genre;
+    }
+
     public int getId() {
         return id;
     }
@@ -64,5 +73,36 @@ public class Book {
 
     public void setAuthorList(List<Author> authorList) {
         this.authorList = authorList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book)) return false;
+
+        Book book = (Book) o;
+
+        if (getTitle() != null ? !getTitle().equals(book.getTitle()) : book.getTitle() != null) return false;
+        if (getIsbn() != null ? !getIsbn().equals(book.getIsbn()) : book.getIsbn() != null) return false;
+        if (getGenre() != book.getGenre()) return false;
+        return getAuthorList() != null ? getAuthorList().equals(book.getAuthorList()) : book.getAuthorList() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getTitle() != null ? getTitle().hashCode() : 0;
+        result = 31 * result + (getIsbn() != null ? getIsbn().hashCode() : 0);
+        result = 31 * result + (getGenre() != null ? getGenre().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", genre=" + genre +
+                ", authorList=" + authorList +
+                '}';
     }
 }
