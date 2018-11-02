@@ -34,8 +34,17 @@ public class Author {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "reward_id")
-    private List<Reward> rewardList;
+    private List<Reward> rewardList = new ArrayList<>();
 
+    public Author() {
+    }
+
+    public Author(String firstName, String lastName, Sex sex, Date birthDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sex = sex;
+        this.birthDate = birthDate;
+    }
 
     public int getId() {
         return id;
