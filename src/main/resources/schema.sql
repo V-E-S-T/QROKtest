@@ -51,24 +51,28 @@ CREATE TABLE books(
                    genre varchar(100))
   DEFAULT CHARACTER SET = utf8;
 
+CREATE TABLE rewards(
+
+  id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+
+  year INT(20),
+  title VARCHAR(255))
+
+  DEFAULT CHARACTER SET = utf8;
+
 CREATE TABLE authors(
 
   id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  reward_id INT(10),
   first_name VARCHAR(100),
   last_name VARCHAR(255),
   sex VARCHAR(100),
-  birth_date DATE)
+  birth_date DATE,
+  FOREIGN KEY (reward_id) REFERENCES rewards (id))
 
   DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE rewards(
 
-                    id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                    author_id INT(10),
-                    year INT(20),
-                    title VARCHAR(255),
-                    FOREIGN KEY (author_id) REFERENCES authors (id))
-  DEFAULT CHARACTER SET = utf8;
 
 
 

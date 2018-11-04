@@ -8,7 +8,7 @@ insert into books (title, isbn, genre) values
   ('title_7', 'isbn_7', 'FANTASY'),
   ('title_8', 'isbn_8', 'FANTASY');
 
-insert into authors (first_name, last_name, sex, birth_date) values
+insert into authors (first_name, last_name, sex, birth_date, , author_id) values
   ('firstName_1', 'lastName_1', 'MALE', '1986-08-01'),
   ('firstName_2', 'lastName_2', 'FEMALE', '1976-09-02'),
   ('firstName_3', 'lastName_3', 'FEMALE', '1966-01-03'),
@@ -17,7 +17,7 @@ insert into authors (first_name, last_name, sex, birth_date) values
   ('firstName_61', 'lastName_61', 'FEMALE', '1936-04-06'),
   ('firstName_17', 'lastName_17', 'MALE', '1926-05-07');
 
-insert into rewards (year, title, author_id) values
+insert into rewards (year, title) values
   (2005, 'title_1', 1),
   (2005, 'title_1', 4),
   (2005, 'title_1', 5),

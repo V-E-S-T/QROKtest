@@ -18,8 +18,9 @@ public class Reward implements Serializable{
     @Column(name = "title")
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reward", cascade = CascadeType.ALL)
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
 
     public Reward() {
