@@ -1,28 +1,39 @@
 package com.book.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "books")
-public class Book {
+public class Book implements Serializable{
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank
+    @Size(max = 100)
     @Column(name = "title")
     private String title;
 
+    @NotBlank
+    @Size(max = 100)
     @Column(name = "isbn")
     private String isbn;
 
+    //@NotBlank
     @Enumerated(EnumType.STRING)
     @Column(name = "genre")
     private Genre genre;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "bookList", fetch = FetchType.LAZY)
     private List<Author> authorList = new ArrayList<>();
 

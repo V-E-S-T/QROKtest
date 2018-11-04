@@ -1,4 +1,4 @@
-package com.book.dao;
+package com.book.service;
 
 import com.book.model.Author;
 import com.book.model.Book;
@@ -8,7 +8,9 @@ import com.book.model.Sex;
 import java.util.Date;
 import java.util.List;
 
-public interface AuthorRepository {
+public interface AuthorService {
+
+    Author update(Author author, int id);
 
     Author save(Author author);
 
@@ -21,7 +23,5 @@ public interface AuthorRepository {
     List<Book> listBooks(int author_id);
 
     List<Reward> listRewards(int author_id);
-
-    boolean isExist(int author_id);
 
 }

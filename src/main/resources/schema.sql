@@ -1,7 +1,10 @@
 DROP TABLE IF EXISTS authors_books;
-DROP TABLE IF EXISTS authors;
-DROP TABLE IF EXISTS rewards;
 DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS rewards;
+DROP TABLE IF EXISTS authors;
+
+
+
 
 # DROP SEQUENCE IF EXISTS global_seq;
 #
@@ -48,23 +51,26 @@ CREATE TABLE books(
                    genre varchar(100))
   DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE rewards(
-
-  id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  year INT(20),
-  title VARCHAR(255))
-  DEFAULT CHARACTER SET = utf8;
-
 CREATE TABLE authors(
 
-                    id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                    reward_id INT(10),
-                    firstName VARCHAR(100),
-                    lastName VARCHAR(255),
-                    sex VARCHAR(100),
-                    birthDate DATE,
-                    FOREIGN KEY (reward_id) REFERENCES rewards (id))
+  id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(100),
+  last_name VARCHAR(255),
+  sex VARCHAR(100),
+  birth_date DATE)
+
   DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE rewards(
+
+                    id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                    author_id INT(10),
+                    year INT(20),
+                    title VARCHAR(255),
+                    FOREIGN KEY (author_id) REFERENCES authors (id))
+  DEFAULT CHARACTER SET = utf8;
+
+
 
 CREATE TABLE authors_books(
 

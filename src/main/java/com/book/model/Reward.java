@@ -1,10 +1,11 @@
 package com.book.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "rewards")
-public class Reward {
+public class Reward implements Serializable{
 
     @Id
     @Column(name = "id")
@@ -17,12 +18,17 @@ public class Reward {
     @Column(name = "title")
     private String title;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private Author author;
+
     public Reward() {
     }
 
-    public Reward(int year, String title) {
+    public Reward(int year, String title, Author author) {
         this.year = year;
         this.title = title;
+        this.author = author;
     }
 
     public int getId() {
@@ -47,5 +53,35 @@ public class Reward {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Reward)) return false;
+
+        Reward reward = (Reward) o;
+
+        if (getId() != reward.getId()) return false;
+        if (getYear() != reward.getYear()) return false;
+        if (getTitle() != null ? !getTitle().equals(reward.getTitle()) : reward.getTitle() != null) return false;
+        return author != null ? author.equals(reward.author) : reward.author == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + getYear();
+        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        return result;
     }
 }

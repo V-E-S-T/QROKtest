@@ -17,12 +17,6 @@ public class AuthorRepositoryImpl implements AuthorRepository{
     private CRUDAuthorRepository authorRepository;
 
     @Override
-    public Author create(String firstName, String lastName, Sex sex, Date birthDate){
-
-        return new Author(firstName, lastName, sex, birthDate);
-    }
-
-    @Override
     public Author save(Author author){
 
         return authorRepository.save(author);

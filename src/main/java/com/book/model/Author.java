@@ -1,25 +1,35 @@
 package com.book.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "authors")
-public class Author {
+public class Author  implements Serializable {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "firstName")
+    @NotBlank
+    @Size(max = 100)
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @NotBlank
+    @Size(max = 100)
+    @Column(name = "last_name")
     private String lastName;
 
+    //@NotBlank
     @Enumerated(EnumType.STRING)
     @Column(name = "sex")
     private Sex sex;
@@ -29,14 +39,24 @@ public class Author {
     inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> bookList = new ArrayList<>();
 
-    @Column(name = "birthDate")
+    @NotNull
+    @Column(name = "birth_date")
     private Date birthDate;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reward_id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = CascadeType.ALL)
     private List<Reward> rewardList = new ArrayList<>();
 
     public Author() {
+    }
+
+    public Author(Author author) {
+        this.id = author.getId();
+        this.firstName = author.getFirstName();
+        this.lastName = author.getLastName();
+        this.sex = author.getSex();
+        this.birthDate = author.getBirthDate();
+        this.bookList = author.getBookList();
+        this.rewardList = author.getRewardList();
     }
 
     public Author(String firstName, String lastName, Sex sex, Date birthDate) {
