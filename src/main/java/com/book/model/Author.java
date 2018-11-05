@@ -34,10 +34,20 @@ public class Author  implements Serializable {
     @Column(name = "sex")
     private Sex sex;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "authors_books", joinColumns = @JoinColumn(name = "author_id"),
     inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> bookList = new ArrayList<>();
+
+    @PrePersist
+    public void addBooks() {
+        bookList.forEach(book -> book.getAuthorList().add(this));
+    }
+
+    @PreRemove
+    public void removeBooks() {
+        bookList.forEach(book -> book.getAuthorList().remove(this));
+    }
 
     @NotNull
     @Column(name = "birth_date")

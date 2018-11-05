@@ -19,13 +19,15 @@ public class AuthorRepositoryImpl implements AuthorRepository{
     @Override
     public Author save(Author author){
 
+        author.getRewardList().forEach(reward -> reward.setAuthor(author));
+
         return authorRepository.save(author);
     }
 
     @Override
     public boolean delete(int author_id){
 
-        return authorRepository.deleteById(author_id);
+        return authorRepository.deleteById(author_id) > 0;
     }
 
     @Override

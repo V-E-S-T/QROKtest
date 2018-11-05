@@ -1,5 +1,7 @@
 package com.book.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -18,9 +20,9 @@ public class Reward implements Serializable{
     @Column(name = "title")
     private String title;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reward", cascade = CascadeType.ALL)
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "author_id", referencedColumnName = "id")
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
 
     public Reward() {

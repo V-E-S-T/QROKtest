@@ -19,7 +19,7 @@ public interface CRUDAuthorRepository extends JpaRepository<Author, Integer>{
 
     @Modifying
     @Transactional
-    boolean deleteById(int author_id);
+    int deleteById(int author_id);
 
     @Override
     List<Author> findAll();
