@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rest")
-public class BookController {
+public class BookRESTController {
 
     @Autowired
     private BookService bookService;
@@ -59,7 +59,6 @@ public class BookController {
 
         return bookService.listAuthors(id);
     }
-
 }
 
 

@@ -5,9 +5,6 @@ DROP TABLE IF EXISTS authors;
 
 
 
-
-
-
 # DROP SEQUENCE IF EXISTS global_seq;
 #
 # CREATE SEQUENCE global_seq START 100000;
@@ -47,43 +44,39 @@ CREATE SCHEMA IF NOT EXISTS qrok DEFAULT CHARACTER SET utf8;
 USE qrok;
 CREATE TABLE books(
 
-                   id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                   title varchar(100),
-                   isbn varchar(255),
-                   genre varchar(100))
-  DEFAULT CHARACTER SET = utf8;
-
-CREATE TABLE rewards(
-
   id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-
-  year INT(20),
-  title VARCHAR(255))
-
+  title varchar(100),
+  isbn varchar(255),
+  genre varchar(100))
   DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE authors(
 
   id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  reward_id INT(10),
   first_name VARCHAR(100),
   last_name VARCHAR(255),
   sex VARCHAR(100),
-  birth_date DATE,
-  FOREIGN KEY (reward_id) REFERENCES rewards (id))
+  birth_date DATE)
 
   DEFAULT CHARACTER SET = utf8;
 
+CREATE TABLE rewards(
 
+  id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  author_id INT(10),
+  year INT(20),
+  title VARCHAR(255),
+  FOREIGN KEY (author_id) REFERENCES authors (id))
+  DEFAULT CHARACTER SET = utf8;
 
 
 
 CREATE TABLE authors_books(
 
-                    author_id INT(10) NOT NULL,
-                    book_id INT(10) NOT NULL,
-                    FOREIGN KEY (author_id) REFERENCES authors (id),
-                    FOREIGN KEY (book_id) REFERENCES books (id))
+  author_id INT(10) NOT NULL,
+  book_id INT(10) NOT NULL,
+  FOREIGN KEY (author_id) REFERENCES authors (id),
+  FOREIGN KEY (book_id) REFERENCES books (id))
   DEFAULT CHARACTER SET = utf8;
 
 

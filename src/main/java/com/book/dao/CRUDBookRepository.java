@@ -4,6 +4,8 @@ import com.book.model.Book;
 import com.book.model.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -17,9 +19,14 @@ public interface CRUDBookRepository extends JpaRepository<Book, Integer> {
 
     Book findById(int book_id);
 
-    @Modifying
+//    @Modifying
+//    @Transactional
+//    int deleteById(int author_id);
+
     @Transactional
-    boolean deleteById(int author_id);
+    @Modifying
+    @Query("DELETE FROM Book b WHERE b.id=:id")
+    int delete(@Param("id") int id);
 
     List<Book> findBooksByGenre(Genre genre);
 

@@ -34,7 +34,7 @@ public class Author  implements Serializable {
     @Column(name = "sex")
     private Sex sex;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(name = "authors_books", joinColumns = @JoinColumn(name = "author_id"),
     inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> bookList = new ArrayList<>();
@@ -53,9 +53,9 @@ public class Author  implements Serializable {
     @Column(name = "birth_date")
     private Date birthDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reward_id", referencedColumnName = "id")
-    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = CascadeType.ALL)
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "reward_id", referencedColumnName = "id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = CascadeType.ALL)
     private List<Reward> rewardList = new ArrayList<>();
 
     public Author() {

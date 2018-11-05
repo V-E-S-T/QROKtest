@@ -1,72 +1,29 @@
 package com.book.controller;
 
-import com.book.model.Author;
-import com.book.model.Book;
-import com.book.model.Reward;
-import com.book.model.Sex;
+import com.book.dto.AuthorDTO;
 import com.book.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/rest")
+@Controller
 public class AuthorController {
 
     @Autowired
     private AuthorService authorService;
 
-    @GetMapping(value = "/authors", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Author> getAll(){
+    @GetMapping("/author/info/short/{id}")
+    public ModelAndView getAuthorInfo(@PathVariable("id") int id) {
 
-        return authorService.getAll();
+        ModelAndView mv = new ModelAndView("authorInfo");
+        mv.addObject("title", "Author Info");
+
+        AuthorDTO authorDTO = new AuthorDTO(authorService.get(id));
+
+        mv.addObject("authorDTO", authorDTO);
+
+        return mv;
     }
-
-    @PostMapping(value = "/author/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public Author create(@RequestBody Author author){
-
-        authorService.save(author);
-
-        return author;
-    }
-
-    @PostMapping(value = "/author/{id}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public Author update(@RequestBody Author author, @PathVariable("id") int id){
-
-        return authorService.update(author, id);
-    }
-
-    @DeleteMapping(value = "/author/{id}")
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") int id){
-
-        authorService.delete(id);
-    }
-
-    @GetMapping(value = "/author/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public Author get(@PathVariable("id") int id){
-
-        return authorService.get(id);
-    }
-
-    @GetMapping(value = "/author/{id}/books", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<Book> getListBooks(@PathVariable("id") int id){
-
-        return authorService.listBooks(id);
-    }
-
-    @GetMapping(value = "/author/{id}/rewards", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<Reward> getListRewards(@PathVariable("id") int id){
-
-        return authorService.listRewards(id);
-    }
-
 }

@@ -29,7 +29,7 @@ public class BookRepositoryImpl implements BookRepository{
 
     @Override
     public boolean delete(int book_id) {
-        return bookRepository.deleteById(book_id);
+        return bookRepository.delete(book_id) != 0;
     }
 
     @Override
