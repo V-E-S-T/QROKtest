@@ -38,4 +38,17 @@ public class AuthorDTO {
     public List<String> getListBook() {
         return listBook;
     }
+
+    public String getAuthorInfo(){
+
+        StringBuilder resultString = new StringBuilder();
+
+        resultString.append("Author First Name: ").append(getFirstName())
+                .append("Author Last Name: ").append(getLastName())
+                .append("Author Age: ").append(getAge())
+                .append("Author Books: ").append("\n");
+        getListBook().forEach(book -> resultString.append(book).append("\n"));
+
+        return resultString.toString();
+    }
 }

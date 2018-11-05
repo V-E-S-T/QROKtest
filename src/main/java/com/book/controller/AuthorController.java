@@ -15,15 +15,15 @@ public class AuthorController {
     private AuthorService authorService;
 
     @GetMapping("/author/info/short/{id}")
-    public ModelAndView getAuthorInfo(@PathVariable("id") int id) {
+    public String getAuthorInfo(@PathVariable("id") int id) {
 
-        ModelAndView mv = new ModelAndView("authorInfo");
-        mv.addObject("title", "Author Info");
+        //ModelAndView mv = new ModelAndView("authorInfo");
+        //mv.addObject("title", "Author Info");
 
         AuthorDTO authorDTO = new AuthorDTO(authorService.get(id));
 
-        mv.addObject("authorDTO", authorDTO);
+        //mv.addObject("authorDTO", authorDTO);
 
-        return mv;
+        return authorDTO.getAuthorInfo();
     }
 }
