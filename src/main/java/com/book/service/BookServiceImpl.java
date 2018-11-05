@@ -3,24 +3,37 @@ package com.book.service;
 import com.book.dao.BookRepository;
 import com.book.model.Author;
 import com.book.model.Book;
-import com.book.model.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
 
+@Service
 public class BookServiceImpl implements BookService{
 
     @Autowired
     private BookRepository bookRepository;
 
-    @Override
-    public Book create(String title, String isbn, Genre genre) {
+//    @Override
+//    public Book create(String title, String isbn, Genre genre) {
+//
+//        Assert.hasText(title);
+//        Assert.hasText(isbn);
+//        Assert.notNull(genre, "genre must not be null");
+//        return bookRepository.create(title, isbn, genre);
+//    }
 
-        Assert.hasText(title);
-        Assert.hasText(isbn);
-        Assert.notNull(genre, "genre must not be null");
-        return bookRepository.create(title, isbn, genre);
+
+    @Override
+    public Book update(Book book, int id) {
+        Assert.isTrue(bookRepository.isExist(id), "Book with this ID does not exist");
+        Assert.notNull(book, "Can not save empty book parameter");
+        Assert.notNull(book.getTitle(), "Can not save empty Title parameter");
+        Assert.notNull(book.getIsbn(), "Can not save empty ISBN parameter");
+        Assert.notNull(book.getGenre(), "Can not save empty Genre parameter");
+
+        return bookRepository.save(book);
     }
 
     @Override

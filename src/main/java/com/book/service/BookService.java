@@ -2,13 +2,12 @@ package com.book.service;
 
 import com.book.model.Author;
 import com.book.model.Book;
-import com.book.model.Genre;
 
 import java.util.List;
 
 public interface BookService {
 
-    Book create(String title, String isbn, Genre genre);
+    Book update(Book book, int id);
 
     Book save(Book book);
 
