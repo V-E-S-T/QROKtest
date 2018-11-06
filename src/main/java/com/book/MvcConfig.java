@@ -48,7 +48,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 //
 //        return viewResolver;
 //    }
-
+//
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         //registry.addViewController("/home").setViewName("home");
