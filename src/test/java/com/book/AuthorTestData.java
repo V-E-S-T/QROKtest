@@ -22,9 +22,9 @@ public class AuthorTestData {
     public static final Author author_3 = new Author("firstName_3", "lastName_3", Sex.FEMALE, new Date(1978, 8, 8));
     public static final Author author_4 = new Author("firstName_4", "lastName_4", Sex.FEMALE, new Date(1979, 9, 9));
 
-    public static final Reward reward_1 = new Reward(2000, "reward_1");
-    public static final Reward reward_2 = new Reward(2000, "reward_2");
-    public static final Reward reward_3 = new Reward(2000, "reward_3");
+    public static final Reward reward_1 = new Reward(2000, "reward_1", author_1);
+    public static final Reward reward_2 = new Reward(2000, "reward_2", author_2);
+    public static final Reward reward_3 = new Reward(2000, "reward_3", author_3);
 
     public static void assertMatch(Author actual, Author expected) {
         assertThat(actual).isEqualTo(expected);

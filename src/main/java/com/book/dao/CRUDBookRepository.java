@@ -19,10 +19,6 @@ public interface CRUDBookRepository extends JpaRepository<Book, Integer> {
 
     Book findById(int book_id);
 
-//    @Modifying
-//    @Transactional
-//    int deleteById(int author_id);
-
     @Transactional
     @Modifying
     @Query("DELETE FROM Book b WHERE b.id=:id")

@@ -3,11 +3,9 @@ package com.book.dao;
 import com.book.model.Author;
 import com.book.model.Book;
 import com.book.model.Reward;
-import com.book.model.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 
 @Repository

@@ -15,16 +15,6 @@ public class BookServiceImpl implements BookService{
     @Autowired
     private BookRepository bookRepository;
 
-//    @Override
-//    public Book create(String title, String isbn, Genre genre) {
-//
-//        Assert.hasText(title);
-//        Assert.hasText(isbn);
-//        Assert.notNull(genre, "genre must not be null");
-//        return bookRepository.create(title, isbn, genre);
-//    }
-
-
     @Override
     public Book update(Book book, int id) {
         Assert.isTrue(bookRepository.isExist(id), "Book with this ID does not exist");

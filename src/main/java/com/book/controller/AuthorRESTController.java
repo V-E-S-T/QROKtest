@@ -3,7 +3,6 @@ package com.book.controller;
 import com.book.model.Author;
 import com.book.model.Book;
 import com.book.model.Reward;
-import com.book.model.Sex;
 import com.book.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

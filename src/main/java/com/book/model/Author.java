@@ -53,8 +53,6 @@ public class Author  implements Serializable {
     @Column(name = "birth_date")
     private Date birthDate;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "reward_id", referencedColumnName = "id")
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = CascadeType.ALL)
     private List<Reward> rewardList = new ArrayList<>();
 

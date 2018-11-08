@@ -3,9 +3,7 @@ package com.book.service;
 import com.book.model.Author;
 import com.book.model.Book;
 import com.book.model.Reward;
-import com.book.model.Sex;
 
-import java.util.Date;
 import java.util.List;
 
 public interface AuthorService {
